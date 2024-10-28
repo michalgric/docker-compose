@@ -14,7 +14,7 @@ services:
       - --log.level=DEBUG
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
-      - --providers.file.filename=/path/to/dynamic.yml
+      - --providers.file.filename=/letsencrypt/config/dynamic.yml
       - --api.dashboard=true
       # Set up LetsEncrypt certificate resolver
       - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
