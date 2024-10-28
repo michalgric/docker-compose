@@ -11,7 +11,7 @@ services:
     image: traefik:v3.2
     command:
       #      - --api.insecure=true
-      - --log.level=DEBUG
+      - --log.level=INFO
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
       - --providers.file.filename=/letsencrypt/config/dynamic.yml
