@@ -49,7 +49,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /service/docker/certs:/letsencrypt/certs
-      - ./static-config.yml:/letsencrypt/config/dynamic.yml
+      - ./config:/letsencrypt/config
     labels:
       traefik.enable: true
       # Dashboard
