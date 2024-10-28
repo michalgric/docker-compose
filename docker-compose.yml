@@ -54,4 +54,3 @@ services:
       traefik.http.routers.traefik.rule: Host(`traefik.mlocal.eu`)
       traefik.http.routers.traefik.service: api@internal
       traefik.http.routers.traefik.entrypoints: websecure
-      traefik.http.routers.traefik.tls.certresolver: letsencrypt
