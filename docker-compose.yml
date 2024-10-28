@@ -18,11 +18,11 @@ services:
       # Set up LetsEncrypt certificate resolver
       - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
       - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=websupport
-      - --certificatesResolvers.letsencrypt.acme.dnschallenge.resolvers=ns1.websupport.sk,ns2.websupport.sk,ns3.websupport.sk
+      - --certificatesResolvers.letsencrypt.acme.dnschallenge.resolvers=1.1.1.1:53,1.0.0.1:53
       - --certificatesResolvers.letsencrypt.acme.dnschallenge.delayBeforeCheck=20
 
       #      - --certificatesresolvers.letsencrypt.acme.email=
-      #      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
       # staging environment of LE, remove for real certs
       #      - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
       # Set up an insecure listener that redirects all traffic to TLS
