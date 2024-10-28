@@ -1,11 +1,50 @@
+secrets:
+  websupport-apikey:
+    file: /service/docker/.secrets/websupport/APIKEY
+  websupport-secret:
+    file: /service/docker/.secrets/websupport/SECRET
+  letsencrypt-email:
+    file: /service/docker/.secrets/letsencrypt/email
+
 services:
   reverse-proxy:
     image: traefik:v3.1
     command:
-      - "--api.insecure=true"
-      - "--providers.docker"
+      #      - --api.insecure=true
+      - --log.level=DEBUG
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --api.dashboard=false
+      # Set up LetsEncrypt certificate resolver
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
+      - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=websupport
+      - --certificatesResolvers.letsencrypt.acme.dnschallenge.resolvers=ns1.websupport.sk,ns2.websupport.sk,ns3.websupport.sk
+      - --certificatesResolvers.letsencrypt.acme.dnschallenge.delayBeforeCheck=20
+
+      #      - --certificatesresolvers.letsencrypt.acme.email=
+      #      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
+      # staging environment of LE, remove for real certs
+      #      - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      # Set up an insecure listener that redirects all traffic to TLS
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      # Set up the TLS configuration for our websecure listener
+      - --entrypoints.websecure.http.tls=true
+      - --entrypoints.websecure.http.tls.certResolver=letsencrypt
+      - --entrypoints.websecure.http.tls.domains[0].main=mlocal.eu
+      - --entrypoints.websecure.http.tls.domains[0].sans=*.mlocal.eu
     ports:
       - "80:80"
-      - "8080:8080"
+      - "443:443"
+    secrets:
+      - "websupport-apikey"
+      - "websupport-secret"
+      - "letsencrypt-email"
+    environment:
+      - "WEBSUPPORT_API_KEY_FILE=/run/secrets/websupport-apikey"
+      - "WEBSUPPORT_SECRET_FILE=/run/secrets/websupport-secret"
+      - "TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL_FILE=/run/secrets/letsencrypt-email"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
