@@ -14,7 +14,7 @@ services:
       - --log.level=DEBUG
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
-      - --api.dashboard=false
+      - --api.dashboard=true
       # Set up LetsEncrypt certificate resolver
       - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
       - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=websupport
