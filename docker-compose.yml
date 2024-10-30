@@ -62,6 +62,7 @@ services:
     container_name: omada-controller
     image: mbentley/omada-controller:5.14
     restart: unless-stopped
+    network_mode: host
     ulimits:
       nofile:
         soft: 4096
