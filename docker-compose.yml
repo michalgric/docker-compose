@@ -93,7 +93,7 @@ services:
       - "traefik.http.routers.omada.rule=Host(`omada.mlocal.eu`)"
       - "traefik.http.routers.omada.entrypoints=websecure"
       - "traefik.http.services.omada.loadbalancer.server.port=8088"
-      - "traefik.http.routers.omada.service=omada-controller"
+      #      - "traefik.http.routers.omada.service=omada-controller"
       - "traefik.http.routers.omada.tls.certresolver=letsencrypt"
 
 volumes:
