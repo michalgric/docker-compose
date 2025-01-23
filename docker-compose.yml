@@ -108,7 +108,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.omada.rule=Host(`ollama.mlocal.eu`)"
-      - "traefik.http.routers.traefik.service: api@internal"
       - "traefik.http.routers.omada.entrypoints=websecure"
 
 volumes:
