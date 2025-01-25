@@ -9,8 +9,8 @@ services:
     restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.omada.rule=Host(`ollama.mlocal.eu`)"
-      - "traefik.http.routers.omada.entrypoints=websecure"
+      - "traefik.http.routers.openwebui.rule=Host(`ollama.mlocal.eu`)"
+      - "traefik.http.routers.openwebui.entrypoints=websecure"
     networks:
       - main_default
 
