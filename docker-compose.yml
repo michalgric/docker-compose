@@ -97,20 +97,7 @@ services:
     #      #      - "traefik.http.routers.omada.service=omada-controller"
     #      - "traefik.http.routers.omada.tls.certresolver=letsencrypt"
 
-  open-webui:
-    image: ghcr.io/open-webui/open-webui:main
-    container_name: open-webui
-    environment:
-      - OLLAMA_BASE_URL=http://192.168.1.192:11434
-    volumes:
-      - open-webui:/app/backend/data
-    restart: always
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.omada.rule=Host(`ollama.mlocal.eu`)"
-      - "traefik.http.routers.omada.entrypoints=websecure"
 
 volumes:
   omada-data:
   omada-logs:
-  open-webui:
