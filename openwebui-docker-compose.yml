@@ -12,7 +12,7 @@ services:
       - "traefik.http.routers.omada.rule=Host(`ollama.mlocal.eu`)"
       - "traefik.http.routers.omada.entrypoints=websecure"
     networks:
-      - main-default
+      - main_default
 
 volumes:
   open-webui:
