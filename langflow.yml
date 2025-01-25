@@ -13,8 +13,8 @@ services:
       - langflow-data:/app/langflow
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.omada.rule=Host(`langflow.mlocal.eu`)"
-      - "traefik.http.routers.omada.entrypoints=websecure"
+      - "traefik.http.routers.langflow.rule=Host(`langflow.mlocal.eu`)"
+      - "traefik.http.routers.langflow.entrypoints=websecure"
     networks:
       - main_default
 
