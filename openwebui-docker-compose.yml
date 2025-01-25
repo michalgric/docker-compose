@@ -16,3 +16,8 @@ services:
 
 volumes:
   open-webui:
+
+networks:
+  network1:
+    name: main_default
+    external: true
