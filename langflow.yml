@@ -11,6 +11,8 @@ services:
       # This variable defines where the logs, file storage, monitor data and secret keys are stored.
     volumes:
       - langflow-data:/app/langflow
+    networks:
+      - main_default
 
   postgres:
     image: postgres:16
@@ -22,7 +24,14 @@ services:
       - 5432
     volumes:
       - langflow-postgres:/var/lib/postgresql/data
+    networks:
+      - main_default
 
 volumes:
   langflow-postgres:
   langflow-data:
+
+networks:
+  main_default:
+    name: main_default
+    external: true
