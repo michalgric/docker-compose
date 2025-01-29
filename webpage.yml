@@ -6,8 +6,8 @@ services:
     restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.openwebui.rule=Host(`webrag.mlocal.eu`)"
-      - "traefik.http.routers.openwebui.entrypoints=websecure"
+      - "traefik.http.routers.webpage.rule=Host(`webrag.mlocal.eu`)"
+      - "traefik.http.routers.webpage.entrypoints=websecure"
     networks:
       - main_default
 
