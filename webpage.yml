@@ -1,0 +1,17 @@
+services:
+  webpage_rag:
+    container_name: webpage_rag
+    build:
+      context: ./webpage
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.openwebui.rule=Host(`webrag.mlocal.eu`)"
+      - "traefik.http.routers.openwebui.entrypoints=websecure"
+    networks:
+      - main_default
+
+networks:
+  main_default:
+    name: main_default
+    external: true
