@@ -1,0 +1,17 @@
+services:
+  mysql_chat:
+    container_name: mysql_chat
+    build:
+      context: ./mysql_chat
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mysqlchat.rule=Host(`mysqlchat.mlocal.eu`)"
+      - "traefik.http.routers.mysqlchat.entrypoints=websecure"
+    networks:
+      - main_default
+
+networks:
+  main_default:
+    name: main_default
+    external: true
