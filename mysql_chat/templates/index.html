@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langflow Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Langflow Chat</h1>
+        <div id="chat-box"></div>
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+        </div>
+        <!-- Copy button template that will be cloned by JavaScript -->
+        <template id="copy-button-template">
+            <button class="copy-btn">
+                <img src="{{ url_for('static', filename='copy.png') }}" alt="Copy">
+            </button>
+        </template>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message here..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>
