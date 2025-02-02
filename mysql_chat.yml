@@ -8,6 +8,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.mysqlchat.rule=Host(`mysqlchat.mlocal.eu`)"
       - "traefik.http.routers.mysqlchat.entrypoints=websecure"
+      - "traefik.http.services.mysqlchat.loadbalancer.server.port=5001"
     networks:
       - main_default
 
