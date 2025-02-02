@@ -4,13 +4,13 @@ services:
     build:
       context: ./mysql_chat
     ports:
-      - "5001:5001"      
+      - "84:5001"      
     restart: always
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mysqlchat.rule=Host(`mysqlchat.mlocal.eu`)"
       - "traefik.http.routers.mysqlchat.entrypoints=websecure"
-      - "traefik.http.services.mysqlchat.loadbalancer.server.port=5001"
+      - "traefik.http.services.mysqlchat.loadbalancer.server.port=84"
     networks:
       - main_default
 
