@@ -33,7 +33,7 @@ USER appuser
 EXPOSE $PORT
 
 # Add healthcheck
-HEALTHCHECK CMD python -c "import os,sys,urllib.request; port=os.getenv('PORT','5000'); url='http://localhost:'+port; try: urllib.request.urlopen(url); sys.exit(0) except Exception: sys.exit(1)"
+HEALTHCHECK CMD curl --fail http://localhost:${PORT} || exit 1
 
 # Command to run the application
 CMD ["python", "app.py"]
