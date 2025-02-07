@@ -4,7 +4,7 @@ services:
     build:
       context: ./mysql_chat
     ports:
-      - "5001:5001"      
+      - "8080:5000"      
     restart: always
     labels:
       - "traefik.enable=true"

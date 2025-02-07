@@ -11,7 +11,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels -r requirements.txt
 
 # Final stage
 # Add build argument for port
-ARG PORT=5001
+ARG PORT=5000
 ENV PORT=$PORT
 
 FROM base
@@ -33,7 +33,7 @@ USER appuser
 EXPOSE $PORT
 
 # Add healthcheck
-HEALTHCHECK CMD python -c "import os,sys,urllib.request; port=os.getenv('PORT','5001'); url='http://localhost:'+port; try: urllib.request.urlopen(url); sys.exit(0) except Exception: sys.exit(1)"
+HEALTHCHECK CMD python -c "import os,sys,urllib.request; port=os.getenv('PORT','5000'); url='http://localhost:'+port; try: urllib.request.urlopen(url); sys.exit(0) except Exception: sys.exit(1)"
 
 # Command to run the application
 CMD ["python", "app.py"]
