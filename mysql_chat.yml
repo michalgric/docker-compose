@@ -3,8 +3,6 @@ services:
     container_name: mysql_chat
     build:
       context: ./mysql_chat
-    ports:
-      - "8080:5000"      
     restart: always
     labels:
       - "traefik.enable=true"
