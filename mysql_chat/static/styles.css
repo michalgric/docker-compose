@@ -250,3 +250,65 @@ pre code {
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(100, 255, 218, 0.4);
 }
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .chat-container {
+        width: 95%;
+        margin: 8px auto;
+        padding: 12px;
+        max-height: 100vh;
+    }
+
+    #chat-box {
+        height: calc(100vh - 180px);
+    }
+
+    #chat-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #chat-form button {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .message {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    pre {
+        font-size: 12px;
+    }
+
+    .chat-container h1 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Small phones */
+@media screen and (max-width: 380px) {
+    .chat-container {
+        width: 98%;
+        padding: 8px;
+    }
+
+    #user-input {
+        padding: 10px;
+    }
+
+    .message {
+        font-size: 13px;
+        padding: 6px;
+    }
+}
+
+/* Prevent zoom on input focus for iOS devices */
+@media screen and (max-width: 768px) {
+    #user-input {
+        font-size: 16px;
+    }
+}
