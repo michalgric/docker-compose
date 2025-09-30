@@ -8,7 +8,7 @@ secrets:
 
 services:
   reverse-proxy:
-    image: traefik:v3.2
+    image: traefik:v3.5.3
     command:
       #      - --api.insecure=true
       - --log.level=INFO
@@ -89,10 +89,10 @@ services:
     volumes:
       - omada-data:/opt/tplink/EAPController/data
       - omada-logs:/opt/tplink/EAPController/logs
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.omada.rule=Host(`omada.mlocal.eu`)"
-      - "traefik.http.routers.omada.entrypoints=websecure"
+    #labels:
+    #  - "traefik.enable=true"
+    #  - "traefik.http.routers.omada.rule=Host(`omada.mlocal.eu`)"
+    #  - "traefik.http.routers.omada.entrypoints=websecure"
     #      - "traefik.http.services.omada.loadbalancer.server.port=8088"
     #      #      - "traefik.http.routers.omada.service=omada-controller"
     #      - "traefik.http.routers.omada.tls.certresolver=letsencrypt"
