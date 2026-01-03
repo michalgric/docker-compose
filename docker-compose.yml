@@ -56,6 +56,10 @@ services:
       traefik.http.routers.traefik.rule: Host(`traefik.mlocal.eu`)
       traefik.http.routers.traefik.service: api@internal
       traefik.http.routers.traefik.entrypoints: websecure
+    depends_on:
+      omada-controller:
+        condition: service_healthy
+        restart: true
 
 
   omada-controller:
