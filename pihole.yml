@@ -1,0 +1,28 @@
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:2026.07.2@sha256:f7d1be836e3bc608b56d82fc9904f5a831cdfbc0dc9c6d58f94e4c985c70038b
+    restart: unless-stopped
+    ports:
+      - "192.168.1.122:53:53/tcp"
+      - "192.168.1.122:53:53/udp"
+    environment:
+      TZ: Europe/Prague
+      FTLCONF_dns_upstreams: "unbound#53"
+      FTLCONF_dns_listeningMode: "ALL"
+      FTLCONF_misc_etc_dnsmasq_d: "true"
+      WEBPASSWORD_FILE: /run/secrets/pihole_webpassword
+    volumes:
+      - /service/docker/data/pihole/etc-pihole:/etc/pihole
+      - /service/docker/data/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+      - /service/docker/.secrets/pihole/webpassword:/run/secrets/pihole_webpassword:ro
+    networks:
+      - main_default
+      - unbound_dns
+
+
+networks:
+  main_default:
+    external: true
+  unbound_dns:
+    external: true
