@@ -1,11 +1,96 @@
 http:
   routers:
+    hermes:
+      rule: "Host(`hermes.mlocal.eu`)"
+      entryPoints:
+        - websecure
+      service: hermes
+      tls:
+        certResolver: letsencrypt
     sw1:
       rule: Host(`sw1.mlocal.eu`)
       service: sw1
+    router1:
+      rule: Host(`router1.mlocal.eu`)
+      service: router1
+    pihole:
+      rule: Host(`pihole.mlocal.eu`)
+      service: pihole
+    ha1:
+      rule: Host(`ha.mlocal.eu`)
+      service: ha1
+    langflow:
+      rule: Host(`langflow.mlocal.eu`)
+      service: langflow
+    moltbot:
+      rule: Host(`moltbot.mlocal.eu`)
+      service: moltbot
+    omada:
+      rule: "Host(`omada.mlocal.eu`)"
+      entryPoints:
+        - websecure
+      service: omada
+      tls:
+        certResolver: letsencrypt
+    beszel:
+      rule: "Host(`beszel.mlocal.eu`)"
+      entryPoints:
+        - websecure
+      service: beszel
+      tls:
+        certResolver: letsencrypt
+    status:
+      rule: "Host(`status.mlocal.eu`)"
+      entryPoints:
+        - websecure
+      service: uptime-kuma
+      tls:
+        certResolver: letsencrypt
 
   services:
+    hermes:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.150:9119"
+    ha1:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.51:8123"
     sw1:
       loadBalancer:
         servers:
-          - url: http://192.168.1.2:80
+          - url: "http://192.168.1.2:80"
+    router1:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.1:80"
+    pihole:
+      loadBalancer:
+        servers:
+          - url: "http://pihole:80"
+    langflow:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.192:7860"
+    moltbot:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.150:18789"
+    omada:
+      loadBalancer:
+        serversTransport: omada-insecure
+        servers:
+          - url: "https://host.docker.internal:8043"
+    beszel:
+      loadBalancer:
+        servers:
+          - url: "http://beszel:8090"
+    uptime-kuma:
+      loadBalancer:
+        servers:
+          - url: "http://uptime-kuma:3001"
+
+
+  serversTransports:
+    omada-insecure:
+      insecureSkipVerify: true
