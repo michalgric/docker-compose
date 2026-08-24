@@ -4,8 +4,8 @@ services:
     image: ghcr.io/klutchell/unbound@sha256:5020cfe1218aeda38777f88279220162e602c3a44efc684550dbf46137106a16
     restart: unless-stopped
     ports:
-      - "5335:53/tcp"
-      - "5335:53/udp"
+      - "192.168.1.122:5335:53/tcp"
+      - "192.168.1.122:5335:53/udp"
     volumes:
       - /service/docker/data/unbound/unbound.conf:/etc/unbound/custom.conf.d/unbound.conf:ro
     networks:
