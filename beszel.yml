@@ -1,0 +1,15 @@
+services:
+  beszel:
+    container_name: beszel
+    image: ghcr.io/henrygd/beszel/beszel@sha256:99181067e5a46b3147231f456114280a8119eed371808bce79e6e7f173946975
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Prague
+    volumes:
+      - /service/docker/data/beszel:/beszel_data
+    networks:
+      - main_default
+
+networks:
+  main_default:
+    external: true
