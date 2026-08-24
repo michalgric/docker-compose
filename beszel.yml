@@ -10,6 +10,17 @@ services:
     networks:
       - main_default
 
+  beszel-agent:
+    container_name: beszel-agent
+    image: ghcr.io/henrygd/beszel/beszel-agent@sha256:6c8c99e3de2ab82f503f0ff8f0c3a1dbd4cf0e735cf2c24175fa2db826994a60
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      PORT: "45876"
+      KEY: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINfn1BjDW8THgCGVSeWasZ1lK8NC36RmDpJ1CN3AA9dx
+
 networks:
   main_default:
     external: true
