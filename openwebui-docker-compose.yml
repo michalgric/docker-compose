@@ -1,6 +1,6 @@
 services:
   open-webui:
-    image: ghcr.io/open-webui/open-webui:v0.11.0
+    image: ghcr.io/open-webui/open-webui:v0.11.1
     container_name: open-webui
     environment:
       - OLLAMA_BASE_URL=http://192.168.1.192:11434
