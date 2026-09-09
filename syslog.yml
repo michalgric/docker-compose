@@ -1,0 +1,15 @@
+services:
+  syslog-ng:
+    container_name: syslog-ng
+    image: linuxserver/syslog-ng:4.11.0-r0-ls206@sha256:e6265d554e0a66712384508f033b279b80ed9d796ce053e046215389eda1a953
+    restart: unless-stopped
+    ports:
+      - "192.168.1.122:514:5514/udp"
+      - "192.168.1.122:601:6601/tcp"
+    environment:
+      TZ: Europe/Prague
+      PUID: "1000"
+      PGID: "1000"
+    volumes:
+      - /service/docker/data/syslog-ng/config:/config
+      - /service/docker/data/syslog-ng/log:/var/log
