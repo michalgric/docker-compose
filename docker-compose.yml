@@ -9,6 +9,7 @@ secrets:
 services:
   reverse-proxy:
     image: traefik:v3.5.3
+    restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"    
     command:
